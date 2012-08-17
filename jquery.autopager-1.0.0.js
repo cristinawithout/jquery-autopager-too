@@ -131,7 +131,8 @@
   }
 
   function loadOnScroll() {
-    if (content.offset().top + content.height() < $(document).scrollTop() + $(window).height()) {
+    var height = window.innerHeight ? window.innerHeight : $(window).height();
+    if (content.offset().top + content.height() < $(document).scrollTop() + height) {
       $.autopager.load();
     }
   }
