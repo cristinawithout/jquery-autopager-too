@@ -1,5 +1,5 @@
 /*
- * jQuery.autopager Too v1.0.1
+ * jQuery.autopager Too v1.0.2
  *
  * Copyright (c) cristinawithout
  * Based on jQuery.autopager copyright (c) Lagos
@@ -16,7 +16,7 @@
  */
 (function($) {
   var window = this, options = {},
-  content, currentUrl, nextUrl,
+  content = null, currentUrl = null, nextUrl = null,
   active = false,
   defaults = {
     autoLoad: true,
@@ -125,12 +125,12 @@
         if (value) {
           options.appendTo = null;
         }
-        break
+        break;
       case 'appendTo':
         if (value) {
           options.insertBefore = null;
         }
-        break
+        break;
     }
     options[key] = value;
   }
@@ -141,8 +141,10 @@
   }
 
   function loadOnScroll() {
+    // Checks the current location of the viewport on the page. If it's within 20 pixels of the bottom,
+    // load the next page.
     var height = window.innerHeight ? window.innerHeight : $(window).height();
-    if (content.offset().top + content.height() < $(document).scrollTop() + height) {
+    if (content.offset().top + content.height() < $(document).scrollTop() + height + 20) {
       $.autopager.load();
     }
   }
