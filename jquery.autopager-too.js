@@ -20,6 +20,7 @@
   active = false,
   defaults = {
     autoLoad: true,
+    loadOnNoLink: true,
     page: 1,
     content: '.content',
     link: 'a[rel=next]',
@@ -100,7 +101,7 @@
     },
 
     load: function() {
-      if (active || !nextUrl || options.disabled) {
+      if (active || !nextUrl || options.disabled || (!options.loadOnNoLink && $(options.link).length == 0)) {
         return;
       }
 
