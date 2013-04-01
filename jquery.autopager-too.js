@@ -20,7 +20,6 @@
   active = false,
   defaults = {
     autoLoad: true,
-    loadOnNoLink: true,
     page: 1,
     content: '.content',
     link: 'a[rel=next]',
@@ -101,7 +100,7 @@
     },
 
     load: function() {
-      if (active || !nextUrl || options.disabled || (!options.loadOnNoLink && $(options.link).length == 0)) {
+      if (active || !nextUrl) {
         return;
       }
 
@@ -109,6 +108,10 @@
       options.start(currentHash(), nextHash());
       $.get(nextUrl, insertContent);
       return this;
+    },
+
+    reset: function() {
+      setUrl();
     }
 
   });
