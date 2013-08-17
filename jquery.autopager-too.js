@@ -114,6 +114,14 @@
       setUrl();
     }
 
+    isLoading: function() {
+      return active;
+    },
+
+    hasMore: function() {
+      return (nextUrl ? true : false);
+    }
+
   });
 
   function set(key, value) {
