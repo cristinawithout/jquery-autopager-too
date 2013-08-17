@@ -112,7 +112,7 @@
 
     reset: function() {
       setUrl();
-    }
+    },
 
     isLoading: function() {
       return active;
