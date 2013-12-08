@@ -100,7 +100,7 @@
     },
 
     load: function() {
-      if (active || !nextUrl) {
+      if (active || !nextUrl || $.noAutopager) {
         return;
       }
 
