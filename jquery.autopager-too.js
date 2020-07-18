@@ -151,9 +151,24 @@
     }
   }
 
+  function stripTag(s, tagsToRemove) {
+    var index;
+    for (index = 0; index < tagsToRemove.length; index++) {
+      var div = document.createElement('div');
+      div.innerHTML = s;
+      var tags = div.getElementsByTagName(tagsToRemove[index]);
+      var i = tags.length;
+      while (i--) {
+        tags[i].parentNode.removeChild(tags[i]);
+      }
+      s = div.innerHTML;
+    }
+    return s;
+  }
+
   function insertContent(res) {
     var _options = options,
-    nextPage = $('<div/>').append(res.replace(/<script(.|\s)*?\/script>/g, "")),
+      nextPage = $('<div/>').append(stripTag(res, [ "script", "noscript"])),
     nextContent = nextPage.find(_options.content); 
 
     set('page', _options.page + 1);
