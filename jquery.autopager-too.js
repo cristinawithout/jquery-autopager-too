@@ -100,7 +100,7 @@
     },
 
     load: function() {
-      if (active || !nextUrl) {
+      if (active || !nextUrl || $.noAutopager) {
         return;
       }
 
@@ -112,6 +112,14 @@
 
     reset: function() {
       setUrl();
+    },
+
+    isLoading: function() {
+      return active;
+    },
+
+    hasMore: function() {
+      return (nextUrl ? true : false);
     }
 
   });
